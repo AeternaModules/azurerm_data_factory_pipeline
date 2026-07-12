@@ -1,3 +1,7 @@
+output "data_factory_pipelines_id" {
+  description = "Map of id values across all data_factory_pipelines, keyed the same as var.data_factory_pipelines"
+  value       = { for k, v in azurerm_data_factory_pipeline.data_factory_pipelines : k => v.id }
+}
 output "data_factory_pipelines_activities_json" {
   description = "Map of activities_json values across all data_factory_pipelines, keyed the same as var.data_factory_pipelines"
   value       = { for k, v in azurerm_data_factory_pipeline.data_factory_pipelines : k => v.activities_json }
