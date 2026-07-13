@@ -27,22 +27,6 @@ EOT
     parameters                     = optional(map(string))
     variables                      = optional(map(string))
   }))
-  validation {
-    condition = alltrue([
-      for k, v in var.data_factory_pipelines : (
-        v.concurrency == null || (v.concurrency >= 1 && v.concurrency <= 50)
-      )
-    ])
-    error_message = "must be between 1 and 50"
-  }
-  validation {
-    condition = alltrue([
-      for k, v in var.data_factory_pipelines : (
-        v.folder == null || (length(v.folder) > 0)
-      )
-    ])
-    error_message = "must not be empty"
-  }
   # --- Unconfirmed validation candidates, derived from azurerm_data_factory_pipeline's provider source ---
   # Not auto-enabled: either a bespoke provider validator we can't safely translate,
   # or a path that crosses a list-typed block (needs its own for_each wrapping).
@@ -53,5 +37,11 @@ EOT
   #   source:    [from factories.ValidateFactoryID] !ok
   # path: data_factory_id
   #   source:    [from factories.ValidateFactoryID] err != nil
+  # path: concurrency
+  #   condition: value >= 1 && value <= 50
+  #   message:   must be between 1 and 50
+  # path: folder
+  #   condition: length(value) > 0
+  #   message:   must not be empty
 }
 
