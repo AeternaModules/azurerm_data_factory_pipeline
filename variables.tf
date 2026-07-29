@@ -10,7 +10,7 @@ Optional:
     - concurrency
     - description
     - folder
-    - moniter_metrics_after_duration
+    - monitor_metrics_after_duration
     - parameters
     - variables
 EOT
@@ -23,7 +23,7 @@ EOT
     concurrency                    = optional(number)
     description                    = optional(string)
     folder                         = optional(string)
-    moniter_metrics_after_duration = optional(string)
+    monitor_metrics_after_duration = optional(string)
     parameters                     = optional(map(string))
     variables                      = optional(map(string))
   }))
@@ -39,6 +39,14 @@ EOT
     condition = alltrue([
       for k, v in var.data_factory_pipelines : (
         v.folder == null || (length(v.folder) > 0)
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.data_factory_pipelines : (
+        v.monitor_metrics_after_duration == null || (length(v.monitor_metrics_after_duration) > 0)
       )
     ])
     error_message = "must not be empty"

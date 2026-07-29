@@ -26,9 +26,9 @@ output "data_factory_pipelines_folder" {
   description = "Map of folder values across all data_factory_pipelines, keyed the same as var.data_factory_pipelines"
   value       = { for k, v in azurerm_data_factory_pipeline.data_factory_pipelines : k => v.folder if v.folder != null && length(v.folder) > 0 }
 }
-output "data_factory_pipelines_moniter_metrics_after_duration" {
-  description = "Map of moniter_metrics_after_duration values across all data_factory_pipelines, keyed the same as var.data_factory_pipelines"
-  value       = { for k, v in azurerm_data_factory_pipeline.data_factory_pipelines : k => v.moniter_metrics_after_duration if v.moniter_metrics_after_duration != null && length(v.moniter_metrics_after_duration) > 0 }
+output "data_factory_pipelines_monitor_metrics_after_duration" {
+  description = "Map of monitor_metrics_after_duration values across all data_factory_pipelines, keyed the same as var.data_factory_pipelines"
+  value       = { for k, v in azurerm_data_factory_pipeline.data_factory_pipelines : k => v.monitor_metrics_after_duration if v.monitor_metrics_after_duration != null && length(v.monitor_metrics_after_duration) > 0 }
 }
 output "data_factory_pipelines_name" {
   description = "Map of name values across all data_factory_pipelines, keyed the same as var.data_factory_pipelines"

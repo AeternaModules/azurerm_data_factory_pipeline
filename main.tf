@@ -8,7 +8,7 @@ resource "azurerm_data_factory_pipeline" "data_factory_pipelines" {
   concurrency                    = each.value.concurrency
   description                    = each.value.description
   folder                         = each.value.folder
-  moniter_metrics_after_duration = each.value.moniter_metrics_after_duration
+  monitor_metrics_after_duration = each.value.monitor_metrics_after_duration
   parameters                     = each.value.parameters
   variables                      = each.value.variables
 }
